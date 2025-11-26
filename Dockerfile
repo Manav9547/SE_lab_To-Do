@@ -1,5 +1,7 @@
-FROM openjdk:17
+FROM openjdk:17-slim
+
 WORKDIR /app
+
 COPY TodoApp.java /app
 
 RUN javac TodoApp.java
