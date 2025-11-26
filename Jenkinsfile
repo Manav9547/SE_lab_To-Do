@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -10,19 +11,21 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Building...'
+                echo "Compiling Java program..."
+                sh 'javac TodoApp.java'
             }
         }
 
-        stage('Test') {
+        stage('Run') {
             steps {
-                sh 'python3 -m py_compile todo.py'  // or any simple test
+                echo "Running Java To-Do Application..."
+                sh 'java TodoApp'
             }
         }
 
         stage('Done') {
             steps {
-                echo 'Pipeline completed successfully!'
+                echo "Build & Run completed successfully! ✔"
             }
         }
     }
