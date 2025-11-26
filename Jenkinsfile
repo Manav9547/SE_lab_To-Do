@@ -2,30 +2,26 @@ pipeline {
     agent any
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-
         stage('Build') {
             steps {
-                echo "Compiling Java program..."
+                echo "Compiling Java code..."
                 sh 'javac TodoApp.java'
             }
         }
-
-        stage('Run') {
+        stage('Test (Automated)') {
             steps {
-                echo "Running Java To-Do Application..."
-                sh 'java TodoApp'
+                echo "Running with pre-defined input..."
+                sh 'echo "1\n5" | java TodoApp'
             }
         }
-
         stage('Done') {
             steps {
-                echo "Build & Run completed successfully! ✔"
+                echo "Pipeline completed ✔"
             }
         }
     }
