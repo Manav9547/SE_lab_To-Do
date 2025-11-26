@@ -35,7 +35,7 @@ stage('Push Docker Image') {
             sh '''
                 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                 docker tag todoapp-jenkins $DOCKER_USER/todo-cli:latest
-                docker push $DOCKER_USER/todo-cli:latest
+                docker push $DOCKER_USER/imt2023535-todo-cli:latest
             '''
         }
     }
