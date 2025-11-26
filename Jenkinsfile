@@ -30,8 +30,8 @@ pipeline {
 stage('Push Docker Image') {
     steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', 
-                                         usernameVariable: 'manavimt2023535', 
-                                         passwordVariable: 'mjjm@9547')]) {
+                                         usernameVariable: 'DOCKER_USER', 
+                                         passwordVariable: 'DOCKER_PASS')]) {
             sh '''
                 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                 docker tag todoapp-jenkins $DOCKER_USER/todo-cli:latest
