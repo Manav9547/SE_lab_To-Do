@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class TodoApp{
 
-    private static ArrayList<String> todoList = new ArrayList<>();
+    public static ArrayList<String> todoList = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
