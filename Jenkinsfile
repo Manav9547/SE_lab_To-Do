@@ -3,25 +3,27 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
-                checkout scm
-            }
+            steps { checkout scm }
         }
+
         stage('Build') {
             steps {
-                echo "Compiling Java code..."
-                sh 'javac TodoApp.java'
+                sh 'javac TodoApp.java TodoAppTest.java'
             }
         }
-        stage('Test (Automated)') {
+
+        stage('Test') {
             steps {
-                echo "Running with pre-defined input..."
-                sh 'echo "1\n5" | java TodoApp'
+                echo "Running JUnit Tests"
+                sh 'java org.junit.runner.JUnitCore TodoAppTest'
             }
         }
-        stage('Done') {
+
+        stage('Docker Build') {
+            when { expression { currentBuild.result == null } }   // only if tests passed
             steps {
-                echo "Pipeline completed ✔"
+                echo "Building Docker Image..."
+                sh 'docker build -t todoapp-jenkins .'
             }
         }
     }
