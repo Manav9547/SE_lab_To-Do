@@ -1,6 +1,7 @@
 
+-----------------------------------------------------------
  TO-DO LIST CLI APPLICATION - CI/CD With Jenkins & Docker
-
+-----------------------------------------------------------
 
 This repository contains a Java Command-Line To-Do Application,
 automated end-to-end using Jenkins CI/CD, JUnit, Docker and DockerHub.
