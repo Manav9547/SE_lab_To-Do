@@ -27,5 +27,16 @@ pipeline {
                 sh 'docker build -t todoapp-jenkins .'
             }
         }
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'manavimt2023535', passwordVariable: 'mjjm@9547')]) {
+                sh '''
+                echo "$PASS" | docker login -u "$USER" --password-stdin
+                docker tag todoapp-jenkins $USER/todo-cli:latest
+                docker push $USER/todo-cli:latest
+                '''
+            }
+        }
     }
+}
 }
